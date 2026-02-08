@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Okan Kara</title>
+    <meta name="description" content="Okan Kara — Personal website and blog.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+        :root {
+            --bg: #0e0e0e;
+            --fg: #e8e6e3;
+            --fg-dim: #8a8a8a;
+            --accent: #c4a35a;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+        }
+
+        html { font-size: 16px; }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-mono);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Subtle grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 600px;
+            animation: fadeUp 1s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .path {
+            font-size: 0.85rem;
+            color: var(--fg-dim);
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+            animation: fadeUp 1s ease-out 0.1s both;
+        }
+
+        h1 {
+            font-family: var(--font-mono);
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeUp 1s ease-out 0.2s both;
+        }
+
+        h1 .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 0.85em;
+            background: var(--accent);
+            margin-left: 4px;
+            vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+        }
+
+        .tagline {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            color: var(--fg-dim);
+            font-style: italic;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            animation: fadeUp 1s ease-out 0.35s both;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            animation: fadeUp 1s ease-out 0.5s both;
+        }
+
+        nav a {
+            color: var(--fg);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            padding: 0.4rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 2rem;
+            font-size: 0.75rem;
+            color: var(--fg-dim);
+            letter-spacing: 0.05em;
+            animation: fadeUp 1s ease-out 0.7s both;
+            z-index: 1;
+        }
+
+        footer a {
+            color: var(--fg-dim);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        /* Decorative corner accents */
+        .corner {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            z-index: 1;
+            opacity: 0.15;
+        }
+
+        .corner--tl { top: 1.5rem; left: 1.5rem; border-top: 2px solid var(--fg); border-left: 2px solid var(--fg); }
+        .corner--tr { top: 1.5rem; right: 1.5rem; border-top: 2px solid var(--fg); border-right: 2px solid var(--fg); }
+        .corner--bl { bottom: 1.5rem; left: 1.5rem; border-bottom: 2px solid var(--fg); border-left: 2px solid var(--fg); }
+        .corner--br { bottom: 1.5rem; right: 1.5rem; border-bottom: 2px solid var(--fg); border-right: 2px solid var(--fg); }
+
+        @media (max-width: 480px) {
+            body { padding: 1.5rem; }
+            nav { gap: 1.5rem; }
+            .corner { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="corner corner--tl"></div>
+    <div class="corner corner--tr"></div>
+    <div class="corner corner--bl"></div>
+    <div class="corner corner--br"></div>
+
+    <div class="container">
+        <p class="path">/OkanKara/</p>
+        <h1>/OkanKara/<span class="cursor"></span></h1>
+        <p class="tagline">Growth through Innovation</p>
+        <nav>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">About</a>
+        </nav>
+    </div>
+
+    <footer>
+        &copy; 2025 <a href="/">Okan Kara</a>
+    </footer>
+</body>
+</html>

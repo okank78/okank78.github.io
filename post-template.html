@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST TITLE HERE — Okan Kara</title>
+    <meta name="description" content="POST DESCRIPTION HERE">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+        :root {
+            --bg: #0e0e0e;
+            --fg: #e8e6e3;
+            --fg-dim: #8a8a8a;
+            --accent: #c4a35a;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+        }
+
+        html { font-size: 16px; }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-mono);
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .site-header {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            margin: 0 auto 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeUp 0.8s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .site-header a {
+            color: var(--fg);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .site-header a:hover { color: var(--accent); }
+
+        .site-header nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .site-header nav a {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--fg-dim);
+            position: relative;
+        }
+
+        .site-header nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .site-header nav a:hover { color: var(--fg); }
+        .site-header nav a:hover::after { width: 100%; }
+
+        article {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            margin: 0 auto;
+            animation: fadeUp 0.8s ease-out 0.15s both;
+        }
+
+        article .post-meta {
+            font-size: 0.8rem;
+            color: var(--fg-dim);
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        article h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+        }
+
+        article p {
+            font-family: var(--font-serif);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--fg-dim);
+            margin-bottom: 1.5rem;
+        }
+
+        article h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1rem;
+            color: var(--fg);
+        }
+
+        article a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        article a:hover { border-bottom-color: var(--accent); }
+
+        article blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 1.2rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+
+        article code {
+            background: #1a1a1a;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
+        article img {
+            max-width: 100%;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 3rem;
+            color: var(--fg-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover { color: var(--accent); }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            margin: 4rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #222;
+            font-size: 0.75rem;
+            color: var(--fg-dim);
+            letter-spacing: 0.05em;
+        }
+
+        footer a {
+            color: var(--fg-dim);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover { color: var(--accent); }
+
+        @media (max-width: 480px) {
+            body { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a href="/">/OkanKara/</a>
+        <nav>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <article>
+        <div class="post-meta">2025-02-07</div>
+        <h1>Your Post Title Here</h1>
+
+        <p>
+            Write your first paragraph here. This is the introduction to your post.
+        </p>
+
+        <h2>A Subheading</h2>
+
+        <p>
+            Continue writing here. You can use <strong>bold text</strong>, 
+            <em>italic text</em>, and <a href="#">links</a>.
+        </p>
+
+        <blockquote>
+            <p>You can also add quotes like this.</p>
+        </blockquote>
+
+        <p>
+            Keep writing your content. Each paragraph goes inside its own 
+            &lt;p&gt; ... &lt;/p&gt; tags.
+        </p>
+
+        <a href="blog.html" class="back-link">← Back to all posts</a>
+    </article>
+
+    <footer>
+        &copy; 2025 <a href="/">Okan Kara</a>
+    </footer>
+</body>
+</html>
